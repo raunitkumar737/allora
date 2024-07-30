@@ -278,8 +278,8 @@ echo -e "${BOLD}${DARK_YELLOW}docker-compose.yml file generated successfully!${R
 echo
 
 echo -e "${BOLD}${UNDERLINE}${DARK_YELLOW}Building and starting Docker containers...${RESET}"
-sudo docker-compose build
-sudo docker-compose up -d
+sudo docker compose build
+sudo docker compose up -d
 echo
 sleep 2
 echo -e "${BOLD}${DARK_YELLOW}Checking running Docker containers...${RESET}"
@@ -287,6 +287,7 @@ sudo docker ps
 echo
 read -p "Enter basic-coin-prediction-node-worker CONTAINER_ID: " CONTAINER_ID
 echo
+WORKER_CONTAINER_ID=$(docker ps -q — filter “ancestor=basic-coin-prediction-node-worker”)
 execute_with_prompt 'sudo docker logs -f $CONTAINER_ID'
 echo
 echo "${BOLD}${DARK_YELLOW}Follow me on Twitter @ZunXBT for more one click node run guides !!${RESET}"
